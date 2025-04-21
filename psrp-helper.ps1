@@ -64,7 +64,7 @@ Requires: PowerShell 5.1 or later, Administrative privileges for local setup/und
 Security Note: Remote validation/command execution bypasses certificate CN and CA checks by default (-SkipCNCheck, -SkipCACheck). This is suitable for self-signed certificates but implies trust in the target machine.
 
 #>
-[CmdletBinding(SupportsShouldProcess = $true)]
+[CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'LocalSetup')]
 param(
     [Parameter(ParameterSetName = 'Test')]
     [switch]$Test,
@@ -383,12 +383,6 @@ if ($Version) {
 
 # --- Parameter Set Logic ---
 $effectiveParameterSetName = $PSCmdlet.ParameterSetName
-if (-not $effectiveParameterSetName) {
-    # Default action if no parameters are specified
-    $effectiveParameterSetName = 'LocalSetup'
-    Write-Verbose "No mode specified, defaulting to Local Setup."
-}
-
 Write-Verbose "Executing in mode: $effectiveParameterSetName"
 
 switch ($effectiveParameterSetName) {
