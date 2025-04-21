@@ -656,8 +656,8 @@ switch ($effectiveParameterSetName) {
 
         # FR3.4: Execute Command if connected
         if ($session) {
-            Write-Host "Executing command on $RemoteIP:"
-            Write-Host "'$CommandToRun'" # Separated Write-Host to avoid linter issue
+            Write-Host "Executing command on ${RemoteIP}:"
+            Write-Host "'$CommandToRun'"
             Write-Host "--- Remote Output Start ---"
             try {
                  # FR3.5: Stream output
